@@ -34,10 +34,10 @@ const Banner = () => {
               <p className="text-base font-semibold tracking-wider text-blue-600 uppercase">
                 A social media for learners
               </p>
-              <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
+              <h1 className="mt-4 text-4xl font-bold  lg:mt-8 sm:text-6xl xl:text-8xl">
                 Connect & learn from the experts
               </h1>
-              <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
+              <p className="mt-4 text-base  lg:mt-8 sm:text-xl">
                 Grow your career fast with right mentor.
               </p>
 
@@ -65,7 +65,7 @@ const Banner = () => {
 
               <p className="mt-5 text-gray-600">
                 Already joined us?{' '}
-                <Link to="#" className="text-black transition-all duration-200 hover:underline">
+                <Link to="#" className="text-blue-700 transition-all duration-200 hover:underline">
                   Log in
                 </Link>
               </p>
@@ -164,14 +164,14 @@ const Banner = () => {
       <section className=" bg-opacity-30 py-10 sm:py-6 lg:py-10">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
-              <p className="text-base font-semibold tracking-wider text-blue-600 uppercase">
+           <div>
+              <p className=" font-semibold tracking-wider text-blue-600 uppercase">
                 A social media for learners
               </p>
-              <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
+              <h1 className="mt-4 text-4xl font-bold  lg:mt-8 sm:text-6xl xl:text-8xl">
                 Connect & learn from the experts
               </h1>
-              <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
+              <p className="mt-4 text-base  lg:mt-8 sm:text-xl">
                 Grow your career fast with right mentor.
               </p>
 
@@ -308,13 +308,13 @@ const Banner = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <p className="text-base font-semibold tracking-wider uppercase">
+              <p className="text-base font-semibold tracking-wider text-blue-600 uppercase">
                 A social media for learners
               </p>
-              <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
+              <h1 className="mt-4 text-4xl font-bold  lg:mt-8 sm:text-6xl xl:text-8xl">
                 Connect & learn from the experts
               </h1>
-              <p className="mt-4 text-base lg:mt-8 sm:text-xl">
+              <p className="mt-4 text-base  lg:mt-8 sm:text-xl">
                 Grow your career fast with right mentor.
               </p>
 

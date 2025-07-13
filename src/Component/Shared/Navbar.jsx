@@ -16,7 +16,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar shadow-sm my-4 sticky top-0 z-50 not-dark:bg-white dark:text-white dark:bg-gray-800">
+    <div className="navbar shadow-sm bg-base-100 dracula:bg-gray-900 my-4 sticky top-0 z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">
@@ -43,17 +43,19 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link className=" text-xl">
+        <Link className=" text-xl ">
           <TrueNestLogo></TrueNestLogo>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex ">
-        <ul className="menu menu-horizontal px-1  dark:text-white dark:bg-gray-800">
+        <ul className="menu menu-horizontal px-1 ">
           {links}
         </ul>
       </div>
       <div className="navbar-end">
-        <ThemeController></ThemeController>
+       <div className="mr-6">
+         <ThemeController></ThemeController>
+       </div>
         <Link className="btn btn-primary rounded-4xl px-6">Login </Link>
       </div>
     </div>
