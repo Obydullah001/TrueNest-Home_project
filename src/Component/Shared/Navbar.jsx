@@ -56,7 +56,7 @@ const Navbar = () => {
        <div className="mr-6">
          <ThemeController></ThemeController>
        </div>
-        <Link className="btn btn-primary rounded-4xl px-6">Login </Link>
+        <Link to='/login' className="btn btn-primary rounded-4xl px-6">Login </Link>
       </div>
     </div>
   );
