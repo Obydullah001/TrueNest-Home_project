@@ -3,8 +3,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import loginLottie from '../../assets/Login Character Animation.json'
 import { Link } from 'react-router';
+import SocialLogin from './SocialLogin';
+import useAuth from '../../hooks/UseAuth/useAuth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+    const {loginUser} =useAuth()
      const {
     register,
     handleSubmit,
@@ -13,11 +17,20 @@ const Login = () => {
 
    const onSubmit = (data) => {
     console.log('Login Data:', data);
-    // call login API here
+    loginUser(data.email, data.password)
+    .then(data =>{
+        console.log(data);
+        toast.success('Sign In User SuccessFull')
+    })
+    .catch(error=>{
+        console.log(error);
+        toast.error(error.code , error.message)
+        
+    })
   };
     
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center flex-col  lg:flex-row items-center'>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
         <h1 className="text-5xl font-bold">Please Login</h1>
@@ -43,8 +56,9 @@ const Login = () => {
           <button className="btn btn-primary mt-4">Login</button>
         </fieldset>
             </form>
+            <SocialLogin></SocialLogin>
             <p className='text-center'> New To This Website <Link className='underline text-md text-blue-500' to='/register'> Register  </Link></p>
-            {/* <SocialLogin></SocialLogin> */}
+            
         </div>
         </div>
             <div className=''>

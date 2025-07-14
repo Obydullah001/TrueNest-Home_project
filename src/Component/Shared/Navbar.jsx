@@ -2,15 +2,36 @@ import React from "react";
 import { Link } from "react-router";
 import TrueNestLogo from "./TrueNestLogo";
 import ThemeController from "./ThemeController";
+import useAuth from "../../hooks/UseAuth/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  // const [loading, setLoading] = useState(true);
+
+  // console.log(user);
+
+  // const userImage = user.photoURL || ' ' ;
+  // // console.log(userImage);
+
+  const handleLogOut = () => {
+    logOut()
+      .then((data) => {
+        console.log(data);
+        toast.success("Signed Out Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const links = (
     <>
       <li>
-        <Link>Item 1</Link>
+        <Link to='/'>Home</Link>
       </li>
       <li>
-        <Link>Item 3</Link>
+        <Link to='all-properties'>All Properties</Link>
       </li>
     </>
   );
@@ -46,17 +67,55 @@ const Navbar = () => {
         <Link className=" text-xl ">
           <TrueNestLogo></TrueNestLogo>
         </Link>
+        {user && <p>{user.email}</p>}
       </div>
       <div className="navbar-center hidden lg:flex ">
-        <ul className="menu menu-horizontal px-1 ">
-          {links}
-        </ul>
+        <ul className="menu menu-horizontal px-1 ">{links}</ul>
       </div>
       <div className="navbar-end">
-       <div className="mr-6">
-         <ThemeController></ThemeController>
-       </div>
-        <Link to='/login' className="btn btn-primary rounded-4xl px-6">Login </Link>
+        <div className="mr-6">
+          <ThemeController></ThemeController>
+        </div>
+        {user ? (
+          <>
+<div className="dropdown dropdown-end">
+  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+    <div className="w-10 rounded-full">
+      <img
+        src={
+          user?.photoURL
+            ? user.photoURL
+            : "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
+        }
+        alt="User Avatar"
+      />
+    </div>
+  </div>
+  <ul
+    tabIndex={0}
+    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+  >
+    <li className="text-center font-bold">
+      {user?.displayName || "Anonymous User"}
+    </li>
+    <li>
+      <button onClick={handleLogOut} className="btn btn-sm btn-primary mt-2 hover:bg-red-800 hover:text-secondary">
+        Sign Out
+      </button>
+    </li>
+  </ul>
+</div>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="btn btn-primary rounded-4xl px-6 hover:bg-red-800 hover:text-secondary"
+            >
+              Login
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
