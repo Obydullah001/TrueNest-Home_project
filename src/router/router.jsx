@@ -3,6 +3,7 @@ import MainLayOut from "../LayOut/MainLayOut";
 import { Component } from "react";
 import Home from "../Home/Home/Home";
 import Login from "../pages/Authentication/Login";
+import Register from "../pages/Authentication/Register";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
         {
           path: '/login',
           Component: Login,
+        },
+        {
+          path: '/register',
+          Component: Register,
         }
     ]
   },
