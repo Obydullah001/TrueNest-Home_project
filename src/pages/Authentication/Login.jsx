@@ -2,13 +2,16 @@ import Lottie from 'lottie-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import loginLottie from '../../assets/Login Character Animation.json'
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from './SocialLogin';
 import useAuth from '../../hooks/UseAuth/useAuth';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-    const {loginUser} =useAuth()
+    const {loginUser} =useAuth();
+    const location = useLocation();
+    const from = location.state?.from || '/';
+    const navigate = useNavigate()
      const {
     register,
     handleSubmit,
@@ -20,7 +23,8 @@ const Login = () => {
     loginUser(data.email, data.password)
     .then(data =>{
         console.log(data);
-        toast.success('Sign In User SuccessFull')
+        toast.success('Sign In User SuccessFull');
+        navigate(from);
     })
     .catch(error=>{
         console.log(error);

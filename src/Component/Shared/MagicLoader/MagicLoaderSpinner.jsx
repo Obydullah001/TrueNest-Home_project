@@ -19,7 +19,8 @@ const MagicLoaderSpinner = () => {
     // </div>
     /* Tailwind CSS + inline styles for custom parts */
 
-<div className="relative flex justify-center items-center h-[70px] w-[70px]">
+<div className="my-46">
+  <div className="relative flex justify-center items-center mx-auto h-[70px] w-[70px]">
   <div
     className="block h-[35px] w-[35px] origin-center animate-[spin_1.2s_linear_infinite]"
     style={{ position: "relative" }}
@@ -44,6 +45,7 @@ const MagicLoaderSpinner = () => {
       );
     })}
   </div>
+</div>
 </div>
 
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import registerLottie from "../../assets/registerAnimation.json";
 import Lottie from "lottie-react";
 import SocialLogin from "./SocialLogin";
@@ -10,7 +10,10 @@ import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { createUser } = useAuth();
-  const [imageUrl, setImageUrl] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || '/' ;
 
   const {
     register,
@@ -62,6 +65,7 @@ const onSubmit = (data) => {
     })
     .then(() => {
       toast.success("User created & profile updated!");
+       navigate(from)
     })
     .catch((error) => {
       toast.error(error.message);

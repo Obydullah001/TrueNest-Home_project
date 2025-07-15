@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import TrueNestLogo from "./TrueNestLogo";
 import ThemeController from "./ThemeController";
 import useAuth from "../../hooks/UseAuth/useAuth";
@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const navigate = useNavigate()
   // const [loading, setLoading] = useState(true);
 
   // console.log(user);
@@ -19,6 +20,7 @@ const Navbar = () => {
       .then((data) => {
         console.log(data);
         toast.success("Signed Out Successfully");
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +69,7 @@ const Navbar = () => {
         <Link className=" text-xl ">
           <TrueNestLogo></TrueNestLogo>
         </Link>
-        {user && <p>{user.email}</p>}
+        {/* {user && <p>{user.email}</p>} */}
       </div>
       <div className="navbar-center hidden lg:flex ">
         <ul className="menu menu-horizontal px-1 ">{links}</ul>
