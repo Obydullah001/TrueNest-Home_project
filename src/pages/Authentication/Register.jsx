@@ -7,6 +7,7 @@ import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/UseAuth/useAuth";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
+import UseCreateUser from "../../hooks/MutationHooks/UseCreateUser";
 
 const Register = () => {
   const { createUser } = useAuth();
@@ -14,6 +15,7 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || '/' ;
+  const {mutate: createDBUser}= UseCreateUser();
 
   const {
     register,
@@ -64,8 +66,16 @@ const onSubmit = (data) => {
       });
     })
     .then(() => {
+       createDBUser({
+          name: data.name,
+          email: data.email,
+          image: imageUrl,
+          role: "user",
+          createdAt: new Date(),
+          lastLogin: new Date(),
+        });
       toast.success("User created & profile updated!");
-       navigate(from)
+       navigate(from);
     })
     .catch((error) => {
       toast.error(error.message);

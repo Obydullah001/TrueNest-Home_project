@@ -6,31 +6,85 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import AllProperties from "../pages/AllProperties/AllProperties";
 import PrivateRoute from "../Routes/PrivateRoute";
+import DashBoard from "../pages/DashBoard/DashBoard";
+import DashBoardLayout from "../LayOut/DashBoardLayout";
+import MyProfile from "../pages/DashBoard/MyProfile";
+import WishList from "../pages/DashBoard/WishList";
+import MyReviews from "../pages/DashBoard/MyReviews";
+import PropertyBought from "../pages/DashBoard/PropertyBought";
+import AdminDashBoardLayout from "../LayOut/AdminDashBoardLayout";
+import ManageUsers from "../pages/AdminDashBoard/ManageUsers/ManageUsers";
+import AddProperty from "../pages/AgentProperties/AddProperty/AddProperty";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayOut></MainLayOut>,
     children: [
-        {
-            path: "/",
-            Component: Home
-        },
-          {
+      {
+        path: "/",
+        Component: Home,
+      },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
+    ],
+  },
+  {
         path: '/all-properties',
         element: 
           <PrivateRoute>
             <AllProperties></AllProperties>
-          </PrivateRoute>
-          },
-        {
-          path: '/login',
-          Component: Login,
-        },
-        {
-          path: '/register',
-          Component: Register,
-        }
-    ]
+          </PrivateRoute>  
   },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashBoardLayout></DashBoardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+      path:'profile',
+      element: <MyProfile></MyProfile>
+      },
+      {
+        path: 'wishlist',
+        element: <WishList></WishList>
+      },
+      {
+        path: 'purchased',
+        element: <PropertyBought></PropertyBought>
+      },
+      {
+        path: 'reviews',
+        element: <MyReviews></MyReviews>
+      },
+      {
+        path:'manage-users',
+        element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: 'add-property',
+        element: <AddProperty></AddProperty>
+      }
+  
+  
+  ],
+  },
+  // {
+  //   path:'/adminDashboard',
+  //   element:<AdminDashBoardLayout></AdminDashBoardLayout>,
+  //   children:[
+  //     {
+
+  //     }
+  //   ]
+  // }
 ]);

@@ -2,9 +2,11 @@ import React from 'react';
 import useAuth from '../../hooks/UseAuth/useAuth';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router';
+import UseCreateUser from '../../hooks/MutationHooks/UseCreateUser';
 
 const SocialLogin = () => {
     const {googleSignIn}= useAuth();
+    const {mutate: createDBUser}= UseCreateUser()
     const location = useLocation();
     const  navigate = useNavigate();
     const from = location.state?.from?.pathname || '/' ;
@@ -12,6 +14,12 @@ const SocialLogin = () => {
         googleSignIn()
         .then(result =>{
             console.log(result);
+            const user = result.user;
+            createDBUser({
+                name: user.displayName,
+                email: user.email,
+                image: user.photoURL,
+            })
             toast.success(" Sign In with Google Successful");
             navigate(from,{replace:true});
 
