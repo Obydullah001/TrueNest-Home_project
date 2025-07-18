@@ -52,11 +52,14 @@ const AddProperty = () => {
         image: imageUrl,
         agentName: user.displayName,
         agentEmail: user.email,
-        price: data.price,
+        startingPrice: data.startingPrice,
+        endingPrice: data.endingPrice,
         agentId: user.uid,
         status: "available",
         createdAt: new Date(),
       };
+      console.log(newProperty);
+      
 
       const response = await axiosSecure.post("/properties", newProperty);
 
@@ -164,16 +167,31 @@ const AddProperty = () => {
             <div>
               <label className="label font-medium">
                 <span className="label-text flex items-center gap-2">
-                  <FaMoneyBill /> Price Range
+                  <FaMoneyBill /> Starting Price 
                 </span>
               </label>
               <input
-                {...register("price", { required: true })}
+                {...register("startingPrice", { required: true })}
                 type="text"
                 placeholder="e.g. ৳50,00,000 - ৳70,00,000"
                 className="input input-bordered border-secondary w-full"
               />
-              {errors.price && <p className="text-error text-sm mt-1">Price is required</p>}
+              {errors.price && <p className="text-error text-sm mt-1">Start Price is required</p>}
+              {watchPrice && <p className="text-xs text-accent">Live: {watchPrice}</p>}
+            </div>
+            <div>
+              <label className="label font-medium">
+                <span className="label-text flex items-center gap-2">
+                  <FaMoneyBill /> Ending  Price 
+                </span>
+              </label>
+              <input
+                {...register("endingPrice", { required: true })}
+                type="text"
+                placeholder="e.g. ৳50,00,000 - ৳70,00,000"
+                className="input input-bordered border-secondary w-full"
+              />
+              {errors.price && <p className="text-error text-sm mt-1">End Price is required</p>}
               {watchPrice && <p className="text-xs text-accent">Live: {watchPrice}</p>}
             </div>
 
