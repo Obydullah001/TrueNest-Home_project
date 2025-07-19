@@ -15,6 +15,10 @@ import PropertyBought from "../pages/DashBoard/PropertyBought";
 import AdminDashBoardLayout from "../LayOut/AdminDashBoardLayout";
 import ManageUsers from "../pages/AdminDashBoard/ManageUsers/ManageUsers";
 import AddProperty from "../pages/AgentProperties/AddProperty/AddProperty";
+import AgentAddedProperty from "../pages/AgentProperties/AgentAddedProperty/AgentAddedProperty";
+import UpdateProperty from "../pages/AgentProperties/UpdateProperty/UpdateProperty";
+import Properties from "../pages/AllProperties/Properties";
+import PropertyDetails from "../pages/AllProperties/PropertyDetails";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +44,17 @@ export const router = createBrowserRouter([
         element: 
           <PrivateRoute>
             <AllProperties></AllProperties>
-          </PrivateRoute>  
+          </PrivateRoute>  ,
+          children: [
+            {
+              index: true,
+              element: <Properties></Properties>
+            },
+            {
+            path: 'details/:id',
+            element: <PropertyDetails></PropertyDetails>
+            }
+          ]
   },
   {
     path: "/dashboard",
@@ -73,6 +87,14 @@ export const router = createBrowserRouter([
       {
         path: 'add-property',
         element: <AddProperty></AddProperty>
+      },
+      {
+        path: 'my-properties',
+        element: <AgentAddedProperty></AgentAddedProperty>
+      },
+      {
+        path : 'update-property/:id',
+        element: <UpdateProperty></UpdateProperty>
       }
   
   
