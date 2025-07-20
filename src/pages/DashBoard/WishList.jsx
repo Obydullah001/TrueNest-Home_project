@@ -5,11 +5,13 @@ import toast from 'react-hot-toast';
 import useAuth from '../../hooks/UseAuth/useAuth';
 import useAxiosSecure from '../../hooks/AxiosHooks/useAxiosSecure';
 import { Link } from 'react-router';
+import useUserRole from '../../hooks/useUserRole/useUserRole';
 
 const WishList = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const {role , roleLoading}= useUserRole(user?.email)
 
   const { data: wishlist = [], isLoading } = useQuery({
     queryKey: ['wishlist', user?.email],
@@ -44,10 +46,17 @@ const WishList = () => {
             <p className="text-gray-600">{item.location}</p>
             <p><strong>Agent:</strong> {item.agentName}</p>
             <p><strong>Price:</strong> ৳{item.startingPrice} - ৳{item.endingPrice}</p>
-            <div className="flex gap-3 mt-2">
+            {
+                !roleLoading && role === 'user' &&
+                (
+                    <>
+                    <div className="flex gap-3 mt-2">
               <Link to={`/dashboard/make-offer/${item.propertyId}`} className="btn btn-sm btn-primary">Make Offer</Link>
               <button onClick={() => removeFromWishlist(item._id)} className="btn btn-sm btn-error">Remove</button>
             </div>
+                    </>
+                )
+            }
           </div>
         </div>
       ))}

@@ -19,6 +19,7 @@ import AgentAddedProperty from "../pages/AgentProperties/AgentAddedProperty/Agen
 import UpdateProperty from "../pages/AgentProperties/UpdateProperty/UpdateProperty";
 import Properties from "../pages/AllProperties/Properties";
 import PropertyDetails from "../pages/AllProperties/PropertyDetails";
+import MakeOffer from "../pages/DashBoard/MakeOffer";
 
 export const router = createBrowserRouter([
   {
@@ -40,21 +41,22 @@ export const router = createBrowserRouter([
     ],
   },
   {
-        path: '/all-properties',
-        element: 
-          <PrivateRoute>
-            <AllProperties></AllProperties>
-          </PrivateRoute>  ,
-          children: [
-            {
-              index: true,
-              element: <Properties></Properties>
-            },
-            {
-            path: 'details/:id',
-            element: <PropertyDetails></PropertyDetails>
-            }
-          ]
+    path: "/all-properties",
+    element: (
+      <PrivateRoute>
+        <AllProperties></AllProperties>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Properties></Properties>,
+      },
+      {
+        path: "details/:id",
+        element: <PropertyDetails></PropertyDetails>,
+      },
+    ],
   },
   {
     path: "/dashboard",
@@ -65,40 +67,46 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-      path:'profile',
-      element: <MyProfile></MyProfile>
+        path: "profile",
+        element: <MyProfile></MyProfile>,
       },
       {
-        path: 'wishlist',
-        element: <WishList></WishList>
+        path: "wishlist",
+        element: <WishList></WishList>,
       },
       {
-        path: 'purchased',
+        path: "purchased",
+        element: <PropertyBought></PropertyBought>,
+      },
+      {
+        path: "reviews",
+        element: <MyReviews></MyReviews>,
+      },
+      {
+        path: "manage-users",
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "add-property",
+        element: <AddProperty></AddProperty>,
+      },
+      {
+        path: "my-properties",
+        element: <AgentAddedProperty></AgentAddedProperty>,
+      },
+      {
+        path: "update-property/:id",
+        element: <UpdateProperty></UpdateProperty>,
+      },
+      {
+        path: "make-offer/:id",
+        element: <MakeOffer></MakeOffer>,
+      },
+      {
+        path: 'property-bought',
         element: <PropertyBought></PropertyBought>
-      },
-      {
-        path: 'reviews',
-        element: <MyReviews></MyReviews>
-      },
-      {
-        path:'manage-users',
-        element: <ManageUsers></ManageUsers>
-      },
-      {
-        path: 'add-property',
-        element: <AddProperty></AddProperty>
-      },
-      {
-        path: 'my-properties',
-        element: <AgentAddedProperty></AgentAddedProperty>
-      },
-      {
-        path : 'update-property/:id',
-        element: <UpdateProperty></UpdateProperty>
       }
-  
-  
-  ],
+    ],
   },
   // {
   //   path:'/adminDashboard',

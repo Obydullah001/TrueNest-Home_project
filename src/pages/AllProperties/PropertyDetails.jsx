@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/AxiosHooks/useAxiosSecure";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import useUserRole from "../../hooks/useUserRole/useUserRole";
 import useAuth from "../../hooks/UseAuth/useAuth";
 import { FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
@@ -156,9 +156,11 @@ const PropertyDetails = () => {
               >
                 <FaHeart className="mr-2" /> Add to Wishlist
               </button>
+              {/* <Link to={`/dashboard/make-offer/${property._id}}`}>
               <button className="btn bg-emerald-600  w-full rounded-4xl sm:w-auto hover:btn-secondary">
                 <FaShoppingCart className="mr-2" /> Buy Property
               </button>
+              </Link> */}
             </div>
           )}
         </div>

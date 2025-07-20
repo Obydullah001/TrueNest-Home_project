@@ -45,6 +45,7 @@ const DashBoardLayout = () => {
                 viewBox="0 0 24 24"
                 className="inline-block h-6 w-6 stroke-current"
               >
+                
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
