@@ -20,6 +20,7 @@ import UpdateProperty from "../pages/AgentProperties/UpdateProperty/UpdateProper
 import Properties from "../pages/AllProperties/Properties";
 import PropertyDetails from "../pages/AllProperties/PropertyDetails";
 import MakeOffer from "../pages/DashBoard/MakeOffer";
+import RequestedProperty from "../pages/AgentProperties/RequestedProperty/RequestedProperty";
 
 export const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ export const router = createBrowserRouter([
       {
         path: 'property-bought',
         element: <PropertyBought></PropertyBought>
+      },
+      {
+        path: 'requested-properties',
+        element: <RequestedProperty></RequestedProperty>
       }
     ],
   },

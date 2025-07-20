@@ -34,7 +34,7 @@ const PropertyDetails = () => {
   const { data: reviews = [], refetch } = useQuery({
     queryKey: ["property-reviews", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/reviews/${id}`);
+      const res = await axiosSecure.get(`/reviews/property/${id}`);
       return res.data;
     },
     enabled: !!id,
@@ -51,11 +51,14 @@ const PropertyDetails = () => {
 
     const reviewData = {
       propertyId: id,
+      propertyTitle: property.title,
+      agentName: property.agentName,
+      propertyImage: property.image,
       reviewerName: user?.displayName || "Anonymous",
       reviewerEmail: user?.email,
       comment: reviewText,
       rating: rating,
-      date: new Date(),
+       date: new Date().toISOString(),
     };
 
     try {
