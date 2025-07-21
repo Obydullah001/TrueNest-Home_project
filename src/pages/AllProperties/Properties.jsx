@@ -88,7 +88,7 @@ const Properties = () => {
           </div>
         ))}
       </div>
-    </div>
+    </div
   );
 };
 
