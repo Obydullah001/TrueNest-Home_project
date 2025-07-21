@@ -62,14 +62,14 @@ const Properties = () => {
                   📋 <span className="font-medium">Verification:</span>{' '}
                   <span
                     className={`badge text-white ${
-                      property.verificationStatus === 'verified'
+                      property.status === 'verified'
                         ? 'bg-green-500'
-                        : property.verificationStatus === 'pending'
+                        : property.status === 'pending'
                         ? 'bg-yellow-400 text-black'
                         : 'bg-red-500'
                     }`}
                   >
-                    {property.verificationStatus}
+                    {property.status}
                   </span>
                 </p>
 

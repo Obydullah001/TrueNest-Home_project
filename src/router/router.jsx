@@ -21,6 +21,10 @@ import Properties from "../pages/AllProperties/Properties";
 import PropertyDetails from "../pages/AllProperties/PropertyDetails";
 import MakeOffer from "../pages/DashBoard/MakeOffer";
 import RequestedProperty from "../pages/AgentProperties/RequestedProperty/RequestedProperty";
+import Payment from "../pages/Payment/Payment";
+import SoldProperties from "../pages/AgentProperties/PropertySold/SoldProperties";
+import ManageProperties from "../pages/AdminDashBoard/ManageProperty/ManageProperties";
+
 
 export const router = createBrowserRouter([
   {
@@ -110,6 +114,18 @@ export const router = createBrowserRouter([
       {
         path: 'requested-properties',
         element: <RequestedProperty></RequestedProperty>
+      },
+      {
+        path: 'payment/:parcelId',
+        element: <Payment></Payment>
+      },
+      {
+        path: 'sold-properties',
+        element: <SoldProperties></SoldProperties>
+      },
+      {
+        path: 'manage-properties',
+        element: <ManageProperties></ManageProperties>
       }
     ],
   },
