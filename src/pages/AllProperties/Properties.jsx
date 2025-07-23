@@ -3,6 +3,7 @@ import useAxiosSecure from '../../hooks/AxiosHooks/useAxiosSecure';
 import useAuth from '../../hooks/UseAuth/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router';
+import { MdVerifiedUser } from 'react-icons/md';
 
 const Properties = () => {
   const axiosSecure = useAxiosSecure();
@@ -10,7 +11,7 @@ const Properties = () => {
 
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ['all-properties', user?.email],
-    queryFn: () => axiosSecure.get('/properties').then(res => res.data),
+    queryFn: () => axiosSecure.get('/properties/verifiedStatus').then(res => res.data),
   });
   console.log(properties);
   
@@ -59,19 +60,22 @@ const Properties = () => {
                 </div>
 
                 <p className="mt-3 text-sm text-gray-600">
-                  📋 <span className="font-medium">Verification:</span>{' '}
-                  <span
-                    className={`badge text-white ${
-                      property.status === 'verified'
-                        ? 'bg-green-500'
-                        : property.status === 'pending'
-                        ? 'bg-yellow-400 text-black'
-                        : 'bg-red-500'
-                    }`}
-                  >
-                    {property.status}
-                  </span>
-                </p>
+  📋 <span className="font-medium">Verification:</span>{' '}
+  <span
+    className={`badge flex items-center gap-1 text-white ${
+      property.status === 'verified'
+        ? 'bg-green-500'
+        : property.status === 'pending'
+        ? 'bg-yellow-400 text-black'
+        : 'bg-red-500'
+    }`}
+  >
+    {property.status === 'verified' && (
+      <MdVerifiedUser className="inline text-white" size={18} />
+    )}
+    {property.status}
+  </span>
+</p>
 
                 <p className="text-sm mt-2 text-gray-600">
                   💰 <span className="font-medium">Price range:</span> ${property.startingPrice} – ${property.endingPrice}

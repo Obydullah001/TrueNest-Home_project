@@ -56,6 +56,7 @@ const maxPrice = parseFloat(property.endingPrice);
       const res = await axiosSecure.post('/offers', offerData);
       if (res.data.insertedId) {
         toast.success('Offer submitted successfully');
+        await axiosSecure.delete(`/wishlist/by-property/${user.email}/${id}`);
         navigate('/dashboard/property-bought');
       } else {
         toast.error('Failed to submit offer');

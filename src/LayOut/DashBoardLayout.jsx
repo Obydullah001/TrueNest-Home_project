@@ -239,7 +239,7 @@ const DashBoardLayout = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard/manage-properties"
+                  to="/dashboard/manage-reviews"
                   className={({ isActive }) =>
                     isActive
                       ? "font-extrabold underline text-primary"

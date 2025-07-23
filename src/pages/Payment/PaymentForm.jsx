@@ -32,7 +32,7 @@ const PaymentForm = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [paid, setPaid] = useState(false);
 
-  const { data: offer, isLoading: offerLoading } = useQuery({
+  const { data: offer, isLoading: offerLoading ,  refetch} = useQuery({
     queryKey: ["offer", parcelId],
     queryFn: async () => {
       const res = await axiosSecure.get(`/offers/payment/${parcelId}`);
@@ -86,6 +86,7 @@ const PaymentForm = () => {
 
       if (res.data?.success) {
         setPaid(true);
+        await refetch();
         Swal.fire({
           icon: "success",
           title: "Payment Successful!",

@@ -24,6 +24,8 @@ import RequestedProperty from "../pages/AgentProperties/RequestedProperty/Reques
 import Payment from "../pages/Payment/Payment";
 import SoldProperties from "../pages/AgentProperties/PropertySold/SoldProperties";
 import ManageProperties from "../pages/AdminDashBoard/ManageProperty/ManageProperties";
+import ManageReviews from "../pages/AdminDashBoard/ManageReviews/ManageReviews";
+import AdminProfile from "../pages/AdminDashBoard/AdminProfile/AdminProfile";
 
 
 export const router = createBrowserRouter([
@@ -120,12 +122,20 @@ export const router = createBrowserRouter([
         element: <Payment></Payment>
       },
       {
+        path: 'admin-profile',
+        element: <AdminProfile></AdminProfile>
+      },
+      {
         path: 'sold-properties',
         element: <SoldProperties></SoldProperties>
       },
       {
         path: 'manage-properties',
         element: <ManageProperties></ManageProperties>
+      },
+      {
+        path: 'manage-reviews',
+        element: <ManageReviews></ManageReviews>
       }
     ],
   },

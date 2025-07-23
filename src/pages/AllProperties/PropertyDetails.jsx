@@ -4,7 +4,7 @@ import useAxiosSecure from "../../hooks/AxiosHooks/useAxiosSecure";
 import { Link, useParams } from "react-router";
 import useUserRole from "../../hooks/useUserRole/useUserRole";
 import useAuth from "../../hooks/UseAuth/useAuth";
-import { FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaHeart, FaStar } from "react-icons/fa";
 import { MdRateReview } from "react-icons/md";
 import Swal from "sweetalert2";
 
@@ -17,6 +17,7 @@ const PropertyDetails = () => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
 
+  // Fetch property info
   const {
     data: property,
     isLoading,
@@ -31,6 +32,7 @@ const PropertyDetails = () => {
     enabled: !!id,
   });
 
+  // Fetch reviews for this property
   const { data: reviews = [], refetch } = useQuery({
     queryKey: ["property-reviews", id],
     queryFn: async () => {
@@ -40,10 +42,25 @@ const PropertyDetails = () => {
     enabled: !!id,
   });
 
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  // Fetch offers for this property
+  const { data: offers = [], isLoading: offersLoading } = useQuery({
+    queryKey: ["offers", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/offers/${id}`);
+      return res.data;
+    },
+    enabled: !!id,
+  });
+
+  // Check if property is sold
+  const isSold = offers.some((offer) => offer.status === "bought");
+
+  if (isLoading || offersLoading)
+    return <div className="text-center py-10">Loading...</div>;
   if (isError)
     return <div className="text-red-500">Error: {error.message}</div>;
 
+  // Handle review submit
   const handleReviewSubmit = async () => {
     if (!rating || !reviewText.trim()) {
       return Swal.fire("Please provide both a rating and a review.");
@@ -56,9 +73,10 @@ const PropertyDetails = () => {
       propertyImage: property.image,
       reviewerName: user?.displayName || "Anonymous",
       reviewerEmail: user?.email,
+      reviewerImage: user?.photoURL,
       comment: reviewText,
       rating: rating,
-       date: new Date().toISOString(),
+      date: new Date().toISOString(),
     };
 
     try {
@@ -75,10 +93,58 @@ const PropertyDetails = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      // Optionally refetch reviews here
     } catch (err) {
       console.error("Error submitting review:", err);
-      alert("Something went wrong!");
+      Swal.fire("Something went wrong!");
+    }
+  };
+
+  // Handle add to wishlist
+  const handleAddToWishlist = async () => {
+    if (isSold) {
+      Swal.fire({
+        icon: "error",
+        title: "Already Sold!",
+        text: "You cannot add property to the wishList because It is Already sold",
+      });
+      return;
+    }
+    const data = {
+      propertyId: property._id,
+      userEmail: user.email,
+      title: property.title,
+      image: property.image,
+      agentName: property.agentName,
+      agentImage: property.agentPhoto,
+      agentEmail: property.agentEmail,
+      location: property.location,
+      startingPrice: property.startingPrice,
+      endingPrice: property.endingPrice,
+    };
+
+    try {
+      const res = await axiosSecure.post("/wishList", data);
+      if (res.data?.insertedId) {
+        Swal.fire({
+          icon: "success",
+          title: "Added to Wishlist!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          icon: "info",
+          title: "Already in wishlist!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Failed to add to wishlist",
+        text: error.message,
+      });
     }
   };
 
@@ -117,53 +183,21 @@ const PropertyDetails = () => {
           {!roleLoading && role === "user" && (
             <div className="mt-6 flex flex-col sm:flex-row gap-4">
               <button
-                onClick={async () => {
-                  const data = {
-                    propertyId: property._id,
-                    userEmail: user.email,
-                    title: property.title,
-                    image: property.image,
-                    agentName: property.agentName,
-                    agentEmail: property.agentEmail,
-                    location: property.location,
-                    startingPrice: property.startingPrice,
-                    endingPrice: property.endingPrice,
-                  };
-
-                  try {
-                    const res = await axiosSecure.post("/wishList", data);
-                    if (res.data?.insertedId) {
-                      Swal.fire({
-                        icon: "success",
-                        title: "Added to Wishlist!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                      });
-                    } else {
-                      Swal.fire({
-                        icon: "info",
-                        title: "Already in wishlist!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                      });
-                    }
-                  } catch (error) {
-                    Swal.fire({
-                      icon: "error",
-                      title: "Failed to add to wishlist",
-                      text: error.message,
-                    });
-                  }
-                }}
+                onClick={handleAddToWishlist}
                 className="btn btn-primary w-full rounded-4xl sm:w-auto"
               >
                 <FaHeart className="mr-2" /> Add to Wishlist
               </button>
-              {/* <Link to={`/dashboard/make-offer/${property._id}}`}>
-              <button className="btn bg-emerald-600  w-full rounded-4xl sm:w-auto hover:btn-secondary">
-                <FaShoppingCart className="mr-2" /> Buy Property
-              </button>
+              {/* <Link to={`/dashboard/make-offer/${property._id}`}>
+                <button className="btn bg-emerald-600  w-full rounded-4xl sm:w-auto hover:btn-secondary">
+                  <FaShoppingCart className="mr-2" /> Buy Property
+                </button>
               </Link> */}
+            </div>
+          )}
+          {isSold && (
+            <div className="mt-2 text-red-500 font-semibold">
+              This property is already sold.
             </div>
           )}
         </div>
@@ -173,8 +207,7 @@ const PropertyDetails = () => {
       <div className="mt-10">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xl font-semibold flex items-center gap-2">
-            <MdRateReview className="text-secondary" /> Reviews (
-            {reviews.length})
+            <MdRateReview className="text-secondary" /> Reviews ({reviews.length})
           </h3>
           {!roleLoading && role === "user" && (
             <button
@@ -197,9 +230,8 @@ const PropertyDetails = () => {
                   Reviewer Name: {review.reviewerName}
                 </p>
                 <p className="text-sm font-semibold flex items-center">
-                  {" "}
                   review rating: {review.rating}
-                  <FaStar className="text-amber-400"></FaStar>{" "}
+                  <FaStar className="text-amber-400 ml-1" />
                 </p>
                 <p className="text-sm text-gray-600">{review.comment}</p>
               </div>

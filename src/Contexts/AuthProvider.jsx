@@ -2,30 +2,44 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContexts';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
+import axios from 'axios';
 
 const AuthProvider = ({children}) => {
     const [user, setUser]= useState(null);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
-   const createUser =(email , password) =>{
+      // 🔐 Get JWT and store in localStorage
+  const getToken = async (email) => {
+    const res = await axios.post(`${import.meta.env.VITE_API}/jwt`, { email });
+    localStorage.setItem('access-token', res.data.token);
+  };
+
+   const createUser = async (email , password) =>{
     setLoading(true)
-    return createUserWithEmailAndPassword(auth, email , password);
+     const result = createUserWithEmailAndPassword(auth, email , password);
+    await getToken(result.user.email);
+    return result
    }
 
-   const loginUser = (email , password)=>{
+   const loginUser = async (email , password)=>{
     setLoading(true)
-    return signInWithEmailAndPassword(auth, email , password);
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    await getToken(result.user.email);
+    return result;
    };
 
    const logOut =()=>{
     setLoading(true);
+    localStorage.removeItem('access-token');
     return signOut(auth)
    };
 
-   const googleSignIn = ()=>{
+   const googleSignIn = async ()=>{
     setLoading(true)
-    return signInWithPopup(auth , googleProvider);
+    const result = await signInWithPopup(auth, googleProvider);
+    await getToken(result.user.email);
+    return result;
    }
 
 
