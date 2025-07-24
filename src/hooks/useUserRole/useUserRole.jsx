@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxios from '../AxiosHooks/useAxios';
+import useAxiosSecure from '../AxiosHooks/useAxiosSecure';
+
 
 
 const useUserRole = (email) => {
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const { data: role, isLoading:roleLoading, refetch } = useQuery({
     queryKey: ['user-role', email],

@@ -10,24 +10,38 @@ const AuthProvider = ({children}) => {
     const googleProvider = new GoogleAuthProvider();
 
       // 🔐 Get JWT and store in localStorage
-  const getToken = async (email) => {
+const getToken = async (email) => {
+  try {
     const res = await axios.post(`${import.meta.env.VITE_API}/jwt`, { email });
-    localStorage.setItem('access-token', res.data.token);
-  };
+    localStorage.setItem("access-token", res.data.token);
+    console.log(res.data.token);
+    return res.data.token;
+  } catch (error) {
+    console.log("JWT fetch failed:", error);
+    return null;
+  }
+};
 
-   const createUser = async (email , password) =>{
-    setLoading(true)
-     const result = createUserWithEmailAndPassword(auth, email , password);
-    await getToken(result.user.email);
-    return result
-   }
 
-   const loginUser = async (email , password)=>{
-    setLoading(true)
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    await getToken(result.user.email);
-    return result;
-   };
+const createUser = async (email, password) => {
+  setLoading(true);
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  const token = await getToken(result.user.email);
+  if (!token) throw new Error("Token not received");
+  setLoading(false);
+  return result;
+};
+
+
+const loginUser = async (email, password) => {
+  setLoading(true);
+  const result = await signInWithEmailAndPassword(auth, email, password);
+  const token = await getToken(result.user.email);
+  if (!token) throw new Error("Token not received");
+  setLoading(false);
+  return result;
+};
+
 
    const logOut =()=>{
     setLoading(true);
@@ -35,15 +49,21 @@ const AuthProvider = ({children}) => {
     return signOut(auth)
    };
 
-   const googleSignIn = async ()=>{
-    setLoading(true)
+  const googleSignIn = async () => {
+    setLoading(true);
     const result = await signInWithPopup(auth, googleProvider);
     await getToken(result.user.email);
+    setLoading(false);
     return result;
-   }
+  };
 
 
    useEffect(()=>{
+  //     const token = localStorage.getItem("access-token");
+  // if (token) {
+  //   setLoading(false); // Assume valid for now or implement token validation
+  // };
+
     const unsubscribe = onAuthStateChanged(auth , currentUser =>{
         setUser(currentUser);
         setLoading(false);

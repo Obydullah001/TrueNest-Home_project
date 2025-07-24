@@ -26,6 +26,8 @@ import SoldProperties from "../pages/AgentProperties/PropertySold/SoldProperties
 import ManageProperties from "../pages/AdminDashBoard/ManageProperty/ManageProperties";
 import ManageReviews from "../pages/AdminDashBoard/ManageReviews/ManageReviews";
 import AdminProfile from "../pages/AdminDashBoard/AdminProfile/AdminProfile";
+import Forbidden from "../pages/Forbidden/Forbidden";
+import AdminRoute from "../Routes/AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -45,6 +47,10 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+      {
+        path: '/forbidden',
+        Component: Forbidden,
+      }
     ],
   },
   {
@@ -91,7 +97,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-users",
-        element: <ManageUsers></ManageUsers>,
+        element: <AdminRoute><ManageUsers></ManageUsers>,</AdminRoute>
       },
       {
         path: "add-property",
@@ -123,7 +129,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'admin-profile',
-        element: <AdminProfile></AdminProfile>
+        element: <AdminRoute><AdminProfile></AdminProfile></AdminRoute>
       },
       {
         path: 'sold-properties',
@@ -131,11 +137,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'manage-properties',
-        element: <ManageProperties></ManageProperties>
+        element: <AdminRoute><ManageProperties></ManageProperties></AdminRoute>
       },
       {
         path: 'manage-reviews',
-        element: <ManageReviews></ManageReviews>
+        element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>
       }
     ],
   },
