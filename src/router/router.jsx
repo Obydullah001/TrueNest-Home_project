@@ -28,12 +28,17 @@ import ManageReviews from "../pages/AdminDashBoard/ManageReviews/ManageReviews";
 import AdminProfile from "../pages/AdminDashBoard/AdminProfile/AdminProfile";
 import Forbidden from "../pages/Forbidden/Forbidden";
 import AdminRoute from "../Routes/AdminRoute";
+import AgentRoute from "../Routes/AgentRoute";
+import FraudBlocked from "../pages/FraudBlocked/FraudBlocked";
+import ErrorElement from "../ErrorElement/ErrorElement";
+import AdvertiseProperty from "../pages/AdminDashBoard/AdvertiseProperty/AdvertiseProperty";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayOut></MainLayOut>,
+    errorElement: <ErrorElement></ErrorElement>,
     children: [
       {
         path: "/",
@@ -50,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: '/forbidden',
         Component: Forbidden,
+      },
+      {
+        path: '/fraud-blocked',
+        Component: FraudBlocked,
       }
     ],
   },
@@ -97,19 +106,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-users",
-        element: <AdminRoute><ManageUsers></ManageUsers>,</AdminRoute>
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
       },
       {
         path: "add-property",
-        element: <AddProperty></AddProperty>,
+        element: <AgentRoute><AddProperty></AddProperty></AgentRoute>,
       },
       {
         path: "my-properties",
-        element: <AgentAddedProperty></AgentAddedProperty>,
+        element: <AgentRoute><AgentAddedProperty></AgentAddedProperty></AgentRoute>,
       },
       {
         path: "update-property/:id",
-        element: <UpdateProperty></UpdateProperty>,
+        element: <AgentRoute><UpdateProperty></UpdateProperty></AgentRoute>,
       },
       {
         path: "make-offer/:id",
@@ -121,7 +130,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'requested-properties',
-        element: <RequestedProperty></RequestedProperty>
+        element: <AgentRoute><RequestedProperty></RequestedProperty></AgentRoute>,
       },
       {
         path: 'payment/:parcelId',
@@ -133,7 +142,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'sold-properties',
-        element: <SoldProperties></SoldProperties>
+        element: <AgentRoute><SoldProperties></SoldProperties></AgentRoute>,
       },
       {
         path: 'manage-properties',
@@ -142,6 +151,10 @@ export const router = createBrowserRouter([
       {
         path: 'manage-reviews',
         element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>
+      },
+      {
+        path: 'advertise-property',
+        element:<AdminRoute><AdvertiseProperty></AdvertiseProperty></AdminRoute>
       }
     ],
   },

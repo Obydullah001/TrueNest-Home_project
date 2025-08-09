@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContexts';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
 import axios from 'axios';
 
@@ -49,6 +49,8 @@ const loginUser = async (email, password) => {
     return signOut(auth)
    };
 
+
+
   const googleSignIn = async () => {
     setLoading(true);
     const result = await signInWithPopup(auth, googleProvider);
@@ -56,6 +58,10 @@ const loginUser = async (email, password) => {
     setLoading(false);
     return result;
   };
+  const updateUserProfile = async (profile) => {
+  if (!auth.currentUser) throw new Error("No user logged in");
+  return updateProfile(auth.currentUser, profile);
+};
 
 
    useEffect(()=>{
@@ -79,6 +85,7 @@ const loginUser = async (email, password) => {
         loading,
         setLoading,
         logOut,
+        updateUserProfile,
         googleSignIn
 
     }

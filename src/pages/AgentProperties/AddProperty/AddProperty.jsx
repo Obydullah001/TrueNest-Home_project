@@ -5,9 +5,13 @@ import useAxiosSecure from "../../../hooks/AxiosHooks/useAxiosSecure";
 import useAuth from "../../../hooks/UseAuth/useAuth";
 import { FaCamera, FaMapMarkerAlt, FaHome, FaMoneyBill } from "react-icons/fa";
 
+
 const AddProperty = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  
+  
+  
 
   const {
     register,

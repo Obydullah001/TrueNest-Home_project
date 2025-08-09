@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import useUserRole from "../../hooks/useUserRole/useUserRole";
 
 const bgVariants = {
   animate: {
@@ -27,9 +28,12 @@ const iconVariants = {
   },
 };
 
+
+
 const Forbidden = () => {
   return (
-    <motion.div
+  <div className="mx-auto">
+      <motion.div
       variants={bgVariants}
       animate="animate"
       style={{
@@ -40,6 +44,7 @@ const Forbidden = () => {
         justifyContent: "center",
         background: "linear-gradient(120deg, #f7e9e9 0%, #f5f5f5 50%, #e6f0ea 100%)",
         backgroundSize: "200% 200%",
+        
       }}
     >
       <motion.div
@@ -137,6 +142,7 @@ const Forbidden = () => {
         </div>
       </motion.div>
     </motion.div>
+  </div>
   );
 };
 

@@ -1,12 +1,14 @@
 import React from 'react';
 import Swal from 'sweetalert2';
-import useAxios from '../../../hooks/AxiosHooks/useAxios';
+
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import useAxiosSecure from '../../../hooks/AxiosHooks/useAxiosSecure';
 
 const ManageUsers = () => {
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
+  
   const { data: users = [], isLoading } = useQuery({
     queryKey: ['all-users'],
     queryFn: async () => {
@@ -21,9 +23,9 @@ const ManageUsers = () => {
   });
 
   const { mutate: markFraud } = useMutation({
-    mutationFn: async (id) => {
-      await axiosSecure.patch(`/users/fraud/${id}`);
-      await axiosSecure.delete(`/properties/user/${id}`);
+    mutationFn:async ({ userId, email }) => {
+      await axiosSecure.patch(`/users/fraud/${email}`);
+     // await axiosSecure.delete(`/properties/user-by-email/${email}`);
     },
     onSuccess: () => queryClient.invalidateQueries(['all-users']),
   });
@@ -125,7 +127,7 @@ const ManageUsers = () => {
                           'Mark as Fraud?',
                           `This will mark ${user.email} as fraud and delete their properties.`,
                           'Yes, Mark Fraud',
-                          () => markFraud(user._id)
+                          () => markFraud({ userId: user._id, email: user.email })
                         )
                       }
                     >

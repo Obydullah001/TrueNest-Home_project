@@ -3,6 +3,7 @@ import Navbar from "../Component/Shared/Navbar";
 import SideBar from "../Component/SideBar/SideBar";
 import Footer from "../Home/Home/Footer/Footer";
 import { RiAdminFill } from "react-icons/ri";
+import { AiFillFund } from "react-icons/ai";
 import {
   FaHome,
   FaBoxOpen,
@@ -247,6 +248,18 @@ const DashBoardLayout = () => {
                   }
                 >
                   <MdReviews className="inline-block mr-2" /> Manage reviews
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/advertise-property"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "font-extrabold underline text-primary"
+                      : "font-medium"
+                  }
+                >
+                  <AiFillFund className="inline-block mr-2" /> Advertise Property 
                 </NavLink>
               </li>
             </>
