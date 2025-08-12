@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 
 const axiosSecure = axios.create({
-  baseURL: `http://localhost:5000`
+  baseURL: `https://truenest-server-app.vercel.app`
 });
 
 // Attach token to every request

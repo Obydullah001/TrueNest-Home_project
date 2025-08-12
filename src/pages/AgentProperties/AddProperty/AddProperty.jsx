@@ -190,7 +190,7 @@ const onSubmit = async (data) => {
             <div>
               <label className="label font-medium">
                 <span className="label-text flex items-center gap-2">
-                  <FaMoneyBill /> Starting Price
+                  <FaMoneyBill /> Minimum Price
                 </span>
               </label>
               <input
@@ -201,7 +201,7 @@ const onSubmit = async (data) => {
               />
               {errors.price && (
                 <p className="text-error text-sm mt-1">
-                  Start Price is required
+                  Minimum Price is required
                 </p>
               )}
               {watchPrice && (
@@ -211,7 +211,7 @@ const onSubmit = async (data) => {
             <div>
               <label className="label font-medium">
                 <span className="label-text flex items-center gap-2">
-                  <FaMoneyBill /> Ending Price
+                  <FaMoneyBill /> Maximum Price
                 </span>
               </label>
               <input
@@ -221,7 +221,7 @@ const onSubmit = async (data) => {
                 className="input input-bordered border-secondary w-full"
               />
               {errors.price && (
-                <p className="text-error text-sm mt-1">End Price is required</p>
+                <p className="text-error text-sm mt-1">Maximum Price is required</p>
               )}
               {watchPrice && (
                 <p className="text-xs text-accent">Live: {watchPrice}</p>

@@ -1,65 +1,92 @@
-import React from 'react';
-import Swal from 'sweetalert2';
+import React from "react";
+import Swal from "sweetalert2";
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import useAxiosSecure from '../../../hooks/AxiosHooks/useAxiosSecure';
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/AxiosHooks/useAxiosSecure";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  
   const { data: users = [], isLoading } = useQuery({
-    queryKey: ['all-users'],
+    queryKey: ["all-users"],
     queryFn: async () => {
-      const res = await axiosSecure.get('/users');
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
 
   const { mutate: updateRole } = useMutation({
-    mutationFn: ({ id, role }) => axiosSecure.patch(`/users/role/${id}`, { role }),
-    onSuccess: () => queryClient.invalidateQueries(['all-users']),
+    mutationFn: ({ id, role }) =>
+      axiosSecure.patch(`/users/role/${id}`, { role }),
+    onSuccess: () => queryClient.invalidateQueries(["all-users"]),
   });
 
   const { mutate: markFraud } = useMutation({
-    mutationFn:async ({ userId, email }) => {
+    mutationFn: async ({ userId, email }) => {
       await axiosSecure.patch(`/users/fraud/${email}`);
-     // await axiosSecure.delete(`/properties/user-by-email/${email}`);
+      // await axiosSecure.delete(`/properties/user-by-email/${email}`);
     },
-    onSuccess: () => queryClient.invalidateQueries(['all-users']),
+    onSuccess: () => queryClient.invalidateQueries(["all-users"]),
   });
 
   const { mutate: deleteUser } = useMutation({
-    mutationFn: async (id) => {
-      const { data } = await axiosSecure.delete(`/users/${id}`);
-      await fetch(`/firebase/deleteUser`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ uid: data.firebaseUid }),
-      });
+    mutationFn: async (user) => {
+      // Delete from Firebase first
+      try {
+        await axiosSecure.post("/firebase/deleteUser", {
+          uid: user.firebaseUid,
+          email: user.email,
+        });
+      } catch (err) {
+        // If Firebase user doesn't exist, continue; otherwise fail
+        const msg = err?.response?.data?.error || "";
+        if (!msg.toLowerCase().includes("user-not-found")) {
+          throw err;
+        }
+      }
+
+      // Then delete from DB
+      await axiosSecure.delete(`/users/${user._id}`);
     },
-    onSuccess: () => queryClient.invalidateQueries(['all-users']),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["all-users"]);
+      Swal.fire(
+        "Deleted!",
+        "User removed from Firebase and database.",
+        "success"
+      );
+    },
+    onError: (err) => {
+      Swal.fire(
+        "Error",
+        err?.response?.data?.error || "Delete failed",
+        "error"
+      );
+    },
   });
 
   const handleConfirm = (title, text, confirmText, action) => {
     Swal.fire({
       title,
       text,
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
       confirmButtonText: confirmText,
-      cancelButtonText: 'Cancel',
+      cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) action();
     });
   };
 
-  if (isLoading) return <div className="text-center py-10">Loading users...</div>;
+  if (isLoading)
+    return <div className="text-center py-10">Loading users...</div>;
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4 text-center md:text-left">Manage Users</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-center md:text-left">
+        Manage Users
+      </h2>
       <div className="overflow-x-auto">
         <table className="table w-full text-sm">
           <thead>
@@ -73,9 +100,9 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
+            {users.map((user) => (
               <tr key={user._id}>
-                <td>{user.name || 'N/A'}</td>
+                <td>{user.name || "N/A"}</td>
                 <td className="break-words max-w-[200px]">{user.email}</td>
                 <td className="capitalize">{user.role}</td>
                 <td>
@@ -84,30 +111,32 @@ const ManageUsers = () => {
                       <span className="text-red-500 font-bold">Fraud</span>
                     ) : (
                       <>
-                        {user.role !== 'admin' && (
+                        {user.role !== "admin" && (
                           <button
                             className="btn btn-xs btn-secondary"
                             onClick={() =>
                               handleConfirm(
-                                'Make Admin?',
+                                "Make Admin?",
                                 `Are you sure to make ${user.email} an Admin?`,
-                                'Yes, Make Admin',
-                                () => updateRole({ id: user._id, role: 'admin' })
+                                "Yes, Make Admin",
+                                () =>
+                                  updateRole({ id: user._id, role: "admin" })
                               )
                             }
                           >
                             Make Admin
                           </button>
                         )}
-                        {user.role !== 'agent' && (
+                        {user.role !== "agent" && (
                           <button
                             className="btn btn-xs btn-accent"
                             onClick={() =>
                               handleConfirm(
-                                'Make Agent?',
+                                "Make Agent?",
                                 `Are you sure to make ${user.email} an Agent?`,
-                                'Yes, Make Agent',
-                                () => updateRole({ id: user._id, role: 'agent' })
+                                "Yes, Make Agent",
+                                () =>
+                                  updateRole({ id: user._id, role: "agent" })
                               )
                             }
                           >
@@ -119,15 +148,16 @@ const ManageUsers = () => {
                   </div>
                 </td>
                 <td>
-                  {user.role === 'agent' && !user.fraud && (
+                  {user.role === "agent" && !user.fraud && (
                     <button
                       className="btn btn-xs btn-warning"
                       onClick={() =>
                         handleConfirm(
-                          'Mark as Fraud?',
+                          "Mark as Fraud?",
                           `This will mark ${user.email} as fraud and delete their properties.`,
-                          'Yes, Mark Fraud',
-                          () => markFraud({ userId: user._id, email: user.email })
+                          "Yes, Mark Fraud",
+                          () =>
+                            markFraud({ userId: user._id, email: user.email })
                         )
                       }
                     >
@@ -140,10 +170,10 @@ const ManageUsers = () => {
                     className="btn btn-xs btn-error"
                     onClick={() =>
                       handleConfirm(
-                        'Delete User?',
+                        "Delete User?",
                         `Are you sure to delete ${user.email}? This action is irreversible.`,
-                        'Yes, Delete',
-                        () => deleteUser(user._id)
+                        "Yes, Delete",
+                        () => deleteUser(user) // <-- pass the object
                       )
                     }
                   >

@@ -24,7 +24,7 @@ const HomeAdvertisements = () => {
     <section className="py-16 bg-base-100">
       <div className="max-w-7xl mx-auto px-4">
         <header className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-neutral-800">
+          <h2 className="text-3xl md:text-4xl font-bold ">
             Our Latest Properties
           </h2>
           <p className="mt-3 text-base-content/70 max-w-2xl mx-auto">
@@ -49,7 +49,7 @@ const HomeAdvertisements = () => {
                 </figure>
                 <div className="card-body">
                   <h3 className="card-title">{item.title}</h3>
-                  <p className="text-sm text-gray-500">{item.location}</p>
+                  <p className="text-sm ">{item.location}</p>
                   <p>
                     Price Range{" "}
                     <span className="text-lg font-semibold text-primary">

@@ -48,7 +48,7 @@ const AgentAddedProperty = () => {
               <strong>Price:</strong> {prop.startingPrice} – {prop.endingPrice}
             </p>
             <p>
-              <strong>Status:</strong> {prop.status}
+              <strong>Verification Status:</strong> {prop.status}
             </p>
             <div className="flex items-center justify-start gap-2 mt-4">
               <img

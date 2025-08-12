@@ -33,8 +33,8 @@ const Properties = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-neutral-800">
-        🏡 Explore All Properties
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 ">
+         Explore All Properties
       </h2>
       <div className="flex flex-col md:flex-row gap-4 mb-8 items-center justify-between">
         <input

@@ -46,7 +46,7 @@ const HomeLatestReviews = () => {
     <section className="py-14 bg-base-100">
       <div className="max-w-7xl mx-auto px-4">
         <header className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-neutral-800">
+          <h2 className="text-2xl md:text-3xl font-bold ">
             Latest User Reviews
           </h2>
           <p className="mt-2 text-base-content/70">
@@ -80,7 +80,7 @@ const HomeLatestReviews = () => {
                 >
                   {r.propertyTitle}
                 </Link>
-                <p className="mt-2 text-gray-600">{truncate(r.comment)}</p>
+                <p className="mt-2 text-secondary">{truncate(r.comment)}</p>
               </div>
 
               <div className="mt-4">
