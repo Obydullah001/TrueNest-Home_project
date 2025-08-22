@@ -3,15 +3,20 @@ import React, { useEffect, useState } from 'react';
 const ThemeController = () => {
 
    const [theme, setTheme] = useState('light');
+   console.log(theme);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (savedTheme) {
       setTheme(savedTheme);
-    } else if (systemPrefersDark) {
-      setTheme('dark');
+    }
+    //  else if (systemPrefersDark) {
+    //   setTheme('dark');
+    // } 
+    else {
+      setTheme('light');
     }
   }, []);
 
@@ -22,7 +27,8 @@ const ThemeController = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme( (theme)=> (theme === 'light' ? 'dark' : 'light')
+    ) ;
   };
     return (
        <button onClick={toggleTheme}>

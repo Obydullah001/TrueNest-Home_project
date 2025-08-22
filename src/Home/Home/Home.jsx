@@ -5,6 +5,7 @@ import WorkWithUs from '../WorkWithUs/WorkWithUs';
 import Footer from './Footer/Footer';
 import UseAdvertisement from '../UseAdvertisement/UseAdvertisement';
 import HomeLatestReviews from '../LatestReviews/HomeLatestReviews';
+import PortfolioListings from '../Portfolio/PortfolioListings';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <Banner></Banner>
             <PerfectLand></PerfectLand>
             <UseAdvertisement></UseAdvertisement>
+            <PortfolioListings></PortfolioListings>
             <HomeLatestReviews></HomeLatestReviews>
             <WorkWithUs></WorkWithUs>
             <Footer></Footer>
