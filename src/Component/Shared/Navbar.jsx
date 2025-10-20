@@ -26,20 +26,20 @@ const Navbar = () => {
         console.log(error);
       });
   };
-  const adminLinks = (
-    <>
-          <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "font-extrabold underline text-primary" : "font-medium"
-          }
-          to="/adminDashboard"
-        >
-          AdminDashBoard 
-        </NavLink>
-      </li>
-    </>
-  );
+  // const adminLinks = (
+  //   <>
+  //         <li>
+  //       <NavLink
+  //         className={({ isActive }) =>
+  //           isActive ? "font-extrabold underline text-primary" : "font-medium"
+  //         }
+  //         to="/adminDashboard"
+  //       >
+  //         AdminDashBoard 
+  //       </NavLink>
+  //     </li>
+  //   </>
+  // );
 
 
   const links = (

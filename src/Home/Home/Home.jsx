@@ -6,6 +6,7 @@ import Footer from './Footer/Footer';
 import UseAdvertisement from '../UseAdvertisement/UseAdvertisement';
 import HomeLatestReviews from '../LatestReviews/HomeLatestReviews';
 import PortfolioListings from '../Portfolio/PortfolioListings';
+import NewsletterSection from '../NewsLatter/NewsletterSection';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <UseAdvertisement></UseAdvertisement>
             <PortfolioListings></PortfolioListings>
             <HomeLatestReviews></HomeLatestReviews>
+            <NewsletterSection></NewsletterSection>
             <WorkWithUs></WorkWithUs>
             <Footer></Footer>
         </div>
