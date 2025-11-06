@@ -3,8 +3,8 @@ import React from 'react';
 const FAQSection = () => {
     return (
         <div className='my-10'>
-            <section className="bg-gray-50 py-20 px-6 md:px-16">
-  <h2 className="text-4xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
+            <section className=" py-20 px-6 md:px-16">
+  <h2 className="text-3xl md:text-4xl mb-12 text-center">Frequently Asked Questions</h2>
   <div className="max-w-4xl mx-auto space-y-6">
     {[
       {
@@ -20,9 +20,9 @@ const FAQSection = () => {
         a: "Absolutely! Use the 'List Your Property' option or contact our support team.",
       },
     ].map((faq, i) => (
-      <div key={i} className="bg-white p-6 rounded-lg shadow">
+      <div key={i} className=" p-6 rounded-lg shadow">
         <h3 className="text-lg font-semibold mb-2">{faq.q}</h3>
-        <p className="text-gray-600">{faq.a}</p>
+        <p className="">{faq.a}</p>
       </div>
     ))}
   </div>

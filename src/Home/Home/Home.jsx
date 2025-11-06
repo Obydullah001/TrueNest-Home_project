@@ -9,6 +9,7 @@ import PortfolioListings from '../Portfolio/PortfolioListings';
 import Newletter from '../Newsletter/Newletter';
 import WhyChooseUs from '../whyChooseUs/WhyChooseUs';
 import FAQSection from '../Faq/FAQSection';
+import MeetOurTeam from '../MeetOurAgents/MeetOurTeam';
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
             <PerfectLand></PerfectLand>
             <UseAdvertisement></UseAdvertisement>
             <PortfolioListings></PortfolioListings>
+            <MeetOurTeam></MeetOurTeam>
             <HomeLatestReviews></HomeLatestReviews>
             <WhyChooseUs></WhyChooseUs>
             <Newletter></Newletter>

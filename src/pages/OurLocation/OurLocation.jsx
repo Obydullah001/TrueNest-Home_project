@@ -12,7 +12,7 @@ const OurLocation = () => {
   }, []);
 
   return (
-    <main className="bg-gray-50 text-gray-800">
+    <main className="mt-3">
       {/* Hero Section */}
       <section className="bg-primary text-white py-20 px-6 md:px-16 text-center">
         <h1 className="text-5xl font-bold mb-4">Our Global Presence</h1>
@@ -22,11 +22,14 @@ const OurLocation = () => {
       </section>
 
       {/* Map Section */}
- <section className="pt-24 py-20 px-6 md:px-16">
+<section
+  id="property-locations"
+  className="scroll-mt-32 pt-32 px-6 md:px-16"
+>
   <h2 className="text-4xl font-bold mb-12 text-center">Property Locations</h2>
   <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-12 items-start">
     {/* Left: Map */}
-    <div className="md:w-2/3 w-full h-[500px] rounded-lg o shadow-lg">
+    <div className="md:w-2/3 w-full h-[500px] rounded-lg shadow-lg">
       <MapContainer center={[20, 0]} zoom={2} style={{ height: "100%", width: "100%" }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
@@ -46,11 +49,11 @@ const OurLocation = () => {
     {/* Right: Description */}
     <div className="md:w-1/3 w-full">
       <h3 className="text-2xl font-semibold mb-4">Explore Our Global Reach</h3>
-      <p className="text-gray-700 mb-4">
+      <p className="mb-4">
         Prime Properties spans the globe, offering premium real estate in vibrant cities and serene retreats.
         Our interactive map showcases the diversity of our listings—from luxury villas in Bali to penthouses in New York.
       </p>
-      <p className="text-gray-600">
+      <p>
         Whether you're looking for investment opportunities or your dream home, our global presence ensures
         you’ll find the perfect property in the perfect place.
       </p>
@@ -58,7 +61,7 @@ const OurLocation = () => {
   </div>
 </section>
       {/* Regional Highlights */}
-      <section className="bg-white py-20 px-6 md:px-16">
+      <section className=" py-20 px-6 md:px-16">
         <h2 className="text-4xl font-bold mb-12 text-center">Regional Highlights</h2>
         <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {[
@@ -66,16 +69,16 @@ const OurLocation = () => {
             { region: "Europe", desc: "Historic homes and countryside villas in Tuscany, Paris, and Santorini." },
             { region: "Americas", desc: "Beach houses, city condos, and eco lodges from New York to Costa Rica." },
           ].map((item, index) => (
-            <div key={index} className="bg-gray-50 p-8 rounded-xl shadow hover:shadow-xl transition">
+            <div key={index} className=" p-8 rounded-xl shadow hover:shadow-xl transition">
               <h3 className="text-2xl font-semibold mb-4">{item.region}</h3>
-              <p className="text-gray-600">{item.desc}</p>
+              <p className="">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Office Locations */}
-      <section className="bg-gray-100 py-20 px-6 md:px-16">
+      <section className=" py-20 px-6 md:px-16">
         <h2 className="text-4xl font-bold mb-12 text-center">Our Offices</h2>
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {[
@@ -84,10 +87,10 @@ const OurLocation = () => {
             { city: "London", address: "789 Regent St, London, UK", phone: "+44 20 7946 0123" },
             { city: "Sydney", address: "321 Harbour View, Sydney, Australia", phone: "+61 2 9876 5432" },
           ].map((office, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow">
+            <div key={index} className=" p-6 rounded-lg shadow">
               <h3 className="text-xl font-semibold mb-2">{office.city} Office</h3>
-              <p className="text-gray-600">{office.address}</p>
-              <p className="text-gray-600">Phone: {office.phone}</p>
+              <p className="">{office.address}</p>
+              <p className="">Phone: {office.phone}</p>
             </div>
           ))}
         </div>

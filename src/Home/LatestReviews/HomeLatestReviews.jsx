@@ -12,7 +12,7 @@ const HomeLatestReviews = () => {
   useEffect(() => {
     let mounted = true;
     axiosSecure
-      .get("/reviews/public/latest?limit=3")
+      .get("/reviews/public/latest")
       .then((res) => {
         if (mounted) setReviews(res.data || []);
       })
@@ -43,10 +43,10 @@ const HomeLatestReviews = () => {
     text?.length > n ? text.slice(0, n) + "..." : text;
 
   return (
-    <section className="py-14 bg-base-100">
+    <section className="py-14 bg-base-200">
       <div className="max-w-7xl mx-auto px-4">
         <header className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold ">
+          <h2 className="text-3xl md:text-4xl  ">
             Latest User Reviews
           </h2>
           <p className="mt-2 text-base-content/70">
@@ -56,7 +56,7 @@ const HomeLatestReviews = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((r) => (
-            <div key={r._id || r.date} className="p-5 border rounded-xl shadow-sm bg-base-100">
+            <div key={r._id || r.date} className="p-5  rounded-lg shadow-md bg-base-100">
               <div className="flex items-center gap-3">
                 <img
                   src={r.reviewerImage || "https://i.ibb.co/6YV8wYQ/placeholder.png"}

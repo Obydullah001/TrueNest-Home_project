@@ -31,7 +31,7 @@ const Banner = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center flex-row-reverse grid-cols-1 gap-12 lg:grid-cols-2 ">
             <div >
-              <p className="text-base font-semibold tracking-wider text-blue-600 uppercase">
+              <p className="text-base font-semibold tracking-wider text-primary uppercase">
                 A social media for learners
               </p>
               <h1 className="mt-4 text-4xl font-bold  lg:mt-8 sm:text-6xl xl:text-8xl">
@@ -42,7 +42,7 @@ const Banner = () => {
               </p>
 
               <Link
-                to="#"
+                to="/all-properties"
                 className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-black transition-all duration-200 bg-primary rounded-full lg:mt-16 hover:bg-red-900 focus:bg-yellow-400"
                 role="button"
               >
@@ -65,8 +65,8 @@ const Banner = () => {
 
               <p className="mt-5 text-gray-600">
                 Already joined us?{' '}
-                <Link to="#" className="text-blue-700 transition-all duration-200 hover:underline">
-                  Log in
+                <Link to="/all-properties" className="text-cyan-600 transition-all duration-200 hover:underline">
+                  See Our Progress
                 </Link>
               </p>
             </div>
@@ -165,7 +165,7 @@ const Banner = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
            <div>
-              <p className=" font-semibold tracking-wider text-blue-600 uppercase">
+              <p className=" font-semibold tracking-wider text-primary uppercase">
                 A social media for learners
               </p>
               <h1 className="mt-4 text-4xl font-bold  lg:mt-8 sm:text-6xl xl:text-8xl">
@@ -176,7 +176,7 @@ const Banner = () => {
               </p>
 
               <Link
-                to="#"
+                to="/all-properties"
                 className="inline-flex items-center  px-6 py-4 mt-8 font-semibold  text-black transition-all duration-200 bg-primary rounded-full lg:mt-16  hover:bg-red-900 focus:bg-yellow-400"
                 role="button"
               >
@@ -199,8 +199,8 @@ const Banner = () => {
 
               <p className="mt-5 text-gray-600">
                 Already joined us?{' '}
-                <Link to="#" className="text-black transition-all duration-200 hover:underline">
-                  Log in
+                <Link to="/all-properties" className="text-cyan-600 transition-all duration-200 hover:underline">
+                  See Our Progress
                 </Link>
               </p>
             </div>
@@ -308,18 +308,18 @@ const Banner = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <p className="text-base font-semibold tracking-wider text-blue-600 uppercase">
+              <p className="text-base font-semibold tracking-wider text-primary uppercase">
                 A social media for learners
               </p>
               <h1 className="mt-4 text-4xl font-bold  lg:mt-8 sm:text-6xl xl:text-8xl">
-                Connect & learn from the experts
+                Buy & sell properties easily
               </h1>
               <p className="mt-4 text-base  lg:mt-8 sm:text-xl">
-                Grow your career fast with right mentor.
+                Invest Your Money on Real Properties.
               </p>
 
               <Link
-                to="#"
+                to="/all-properties"
                 className="inline-flex items-center  px-6 py-4 mt-8 font-semibold  text-black transition-all duration-200 bg-primary rounded-full lg:mt-16  hover:bg-red-900 focus:bg-yellow-400"
                 role="button"
               >
@@ -342,8 +342,8 @@ const Banner = () => {
 
               <p className="mt-5 text-gray-600">
                 Already joined us?{' '}
-                <Link to="#" className="text-black transition-all duration-200 hover:underline">
-                  Log in
+                <Link to="/all-properties" className="text-cyan-600 transition-all duration-200 hover:underline">
+                  See Our Progress 
                 </Link>
               </p>
             </div>

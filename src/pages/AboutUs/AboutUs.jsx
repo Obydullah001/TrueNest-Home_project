@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
-    <main className="bg-gray-50 text-gray-800">
+    <main className="">
       {/* Hero Section */}
-      <section className=" bg-red-400 text-white py-24 px-6 md:px-16 text-center">
+      <section className=" py-24 px-6 md:px-16 text-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ const AboutUs = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="text-lg leading-relaxed text-gray-600 text-center max-w-4xl mx-auto"
+          className="text-lg leading-relaxed text-center max-w-4xl mx-auto"
         >
           Founded with a vision to redefine property selling, Prime Properties
           has grown into a leading real estate company trusted by thousands of
@@ -51,7 +51,7 @@ const AboutUs = () => {
       </section>
 
       {/* Mission, Vision, Values */}
-      <section className="bg-white py-20 px-6 md:px-16">
+      <section className=" py-20 px-6 md:px-16">
         <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {[
             {
@@ -72,10 +72,10 @@ const AboutUs = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="p-8 shadow-lg rounded-xl bg-gradient-to-b from-gray-50 to-white hover:shadow-2xl transition"
+              className="p-8 shadow-lg rounded-xl "
             >
               <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
-              <p className="text-gray-600">{item.text}</p>
+              <p className="">{item.text}</p>
             </motion.div>
           ))}
         </div>
@@ -113,7 +113,7 @@ const AboutUs = () => {
       </section> */}
 
       {/* Timeline Section */}
-      <section className="bg-gray-100 py-20 px-6 md:px-16">
+      <section className=" py-20 px-6 md:px-16">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -137,13 +137,13 @@ const AboutUs = () => {
               className="flex items-center space-x-6"
             >
               <div className="text-primary font-bold text-2xl">{item.year}</div>
-              <div className="text-gray-700">{item.event}</div>
+              <div className="">{item.event}</div>
             </motion.div>
           ))}
         </div>
       </section>
       {/* Achievements Section */}
-<section className="bg-white py-20 px-6 md:px-16">
+<section className=" py-20 px-6 md:px-16">
   <h2 className="text-4xl font-bold mb-12 text-center">Our Achievements</h2>
   <div className="grid md:grid-cols-4 gap-12 text-center">
     {[
@@ -152,7 +152,7 @@ const AboutUs = () => {
       { number: "10+", label: "Years of Experience" },
       { number: "15+", label: "Awards Won" },
     ].map((item, index) => (
-      <div key={index} className="p-6 bg-gray-50 rounded-lg shadow hover:scale-105 transition-transform">
+      <div key={index} className="p-6 rounded-lg shadow hover:scale-105 transition-transform">
         <h3 className="text-3xl font-bold text-primary">{item.number}</h3>
         <p className="text-gray-600 mt-2">{item.label}</p>
       </div>
@@ -161,7 +161,7 @@ const AboutUs = () => {
 </section>
 
 {/* Services Section */}
-<section className="bg-gray-100 py-20 px-6 md:px-16">
+<section className=" py-20 px-6 md:px-16">
   <h2 className="text-4xl font-bold mb-12 text-center">Our Services</h2>
   <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
     {[
@@ -169,30 +169,30 @@ const AboutUs = () => {
       { title: "Investment Consulting", desc: "Guidance on smart real estate investments for long-term growth." },
       { title: "Property Management", desc: "Complete management solutions for landlords and investors." },
     ].map((service, index) => (
-      <div key={index} className="bg-white shadow-lg rounded-xl p-8 hover:shadow-2xl transition">
+      <div key={index} className=" shadow-lg rounded-xl p-8 hover:shadow-2xl transition">
         <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-        <p className="text-gray-600">{service.desc}</p>
+        <p className="">{service.desc}</p>
       </div>
     ))}
   </div>
 </section>
 {/* Testimonials Section */}
-<section className="py-20 px-6 md:px-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+<section className="py-20 px-6 md:px-16 ">
   <h2 className="text-4xl font-bold mb-12 text-center">What Our Clients Say</h2>
   <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
     {[
       { name: "John Doe", feedback: "Prime Properties made buying my first home stress-free and enjoyable!" },
       { name: "Emily Smith", feedback: "Their team guided me through every step of selling my property." },
     ].map((testimonial, index) => (
-      <div key={index} className="bg-white shadow-lg rounded-xl p-8">
-        <p className="text-gray-600 italic mb-4">"{testimonial.feedback}"</p>
+      <div key={index} className="shadow-lg rounded-xl p-8">
+        <p className=" italic mb-4">"{testimonial.feedback}"</p>
         <h3 className="text-lg font-semibold text-primary">- {testimonial.name}</h3>
       </div>
     ))}
   </div>
 </section>
 {/* Contact Section */}
-<section className="bg-cyan-600 text-white py-20 px-6 md:px-16 text-center">
+<section className="bg-secondary text-white py-20 px-6 md:px-16 text-center">
   <h2 className="text-4xl font-bold mb-6">Get in Touch</h2>
   <p className="text-lg mb-8 max-w-2xl mx-auto">
     Visit our office or reach out to us for personalized property guidance.

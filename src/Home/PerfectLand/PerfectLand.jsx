@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const PerfectLand = () => {
   return (
@@ -10,15 +11,15 @@ const PerfectLand = () => {
   >
     {/* Text Section */}
     <div className="w-full lg:w-[45%] py-8 text-center lg:text-left">
-      <h2 className="text-3xl md:text-4xl font-bold py-3">
+      <h2 className="text-3xl md:text-4xl py-3">
         Find Perfect Land <br /> With Us
       </h2>
       <p className="max-w-md mx-auto lg:mx-0 text-gray-700">
        Hayden Outdoors Real Estate represents the finest real estate for sale, including farm, ranch and recreational properties from Coast to Coast. From legacy ranches to farms for sale, luxury real estate, hunting land, waterfront, recreational properties and more, we can help you sell or buy your next property
       </p>
-      <button className="btn btn-primary rounded-4xl mt-6 px-6 hover:bg-red-800 hover:text-white">
+      <Link to='/all-properties' className="btn btn-primary rounded-4xl mt-6 px-6 hover:bg-red-800 hover:text-white">
         View Properties
-      </button>
+      </Link>
     </div>
 
     {/* Image Section */}

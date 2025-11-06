@@ -24,7 +24,7 @@ const HomeAdvertisements = () => {
     <section className="py-16 bg-base-100">
       <div className="max-w-7xl mx-auto px-4">
         <header className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold ">
+          <h2 className="text-2xl md:text-4xl  ">
             Our Latest Properties
           </h2>
           <p className="mt-3 text-base-content/70 max-w-2xl mx-auto">
