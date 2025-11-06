@@ -47,7 +47,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "font-extrabold underline text-primary" : "font-medium"
+            isActive ? "font-extrabold underline text-cyan-600" : "font-medium"
           }
           to="/"
         >
@@ -57,7 +57,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "font-extrabold underline text-primary" : "font-medium"
+            isActive ? "font-extrabold underline text-cyan-600" : "font-medium"
           }
           to="/all-properties"
         >
@@ -67,7 +67,7 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "font-extrabold underline text-primary" : "font-medium"
+            isActive ? "font-extrabold underline text-cyan-600" : "font-medium"
           }
           to="/about-us"
         >
@@ -78,7 +78,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar shadow-sm mx-auto bg-secondary dracula:bg-gray-900  sticky top-0 z-50 ">
+    <div className="navbar shadow-sm mx-auto bg-primary dracula:bg-gray-900  sticky top-0 z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">
@@ -109,7 +109,7 @@ const Navbar = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "font-extrabold underline text-primary"
+                      ? "font-extrabold underline text-cyan-600"
                       : "font-medium"
                   }
                   to="/dashboard"
@@ -137,7 +137,7 @@ const Navbar = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "font-extrabold underline text-primary"
+                      ? "font-extrabold underline text-cyan-600"
                       : "font-medium"
                   }
                   to="/dashboard"
@@ -149,7 +149,7 @@ const Navbar = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "font-extrabold underline text-primary"
+                      ? "font-extrabold underline text-cyan-600"
                       : "font-medium"
                   }
                   to="/location"
@@ -208,7 +208,7 @@ const Navbar = () => {
           <>
             <Link
               to="/login"
-              className="btn btn-primary rounded-4xl px-6 hover:bg-red-800 hover:text-secondary"
+              className="btn rounded-4xl px-6 hover:bg-secondary hover:text-primary"
             >
               Login
             </Link>

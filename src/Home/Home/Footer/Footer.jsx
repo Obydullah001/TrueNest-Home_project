@@ -65,9 +65,9 @@ const Footer = () => {
               </ul>
             </div>
             
-            <div className="space-y-3">
-              <div className="uppercase   ">Social media</div>
-              <div className="flex justify-start space-x-3">
+            <div className="space-y-3 ">
+              <div className="uppercase  "></div>
+              <div className="flex md:justify-end lg:ml-40  space-x-3">
                 <a
                   rel="noopener noreferrer"
                   href="#"

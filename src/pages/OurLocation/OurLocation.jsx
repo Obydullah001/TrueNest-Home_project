@@ -94,7 +94,7 @@ const OurLocation = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="bg-secondary text-white py-20 px-6 md:px-16 text-center">
+      <section className="  py-20 px-6 md:px-16 text-center">
         <h2 className="text-4xl font-bold mb-6">Want to Visit or Invest?</h2>
         <p className="text-lg mb-8 max-w-2xl mx-auto">
           Reach out to our global team and discover your next property destination.

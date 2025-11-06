@@ -5,7 +5,7 @@ const AboutUs = () => {
   return (
     <main className="bg-gray-50 text-gray-800">
       {/* Hero Section */}
-      <section className=" bg-primary text-white py-24 px-6 md:px-16 text-center">
+      <section className=" bg-red-400 text-white py-24 px-6 md:px-16 text-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -192,7 +192,7 @@ const AboutUs = () => {
   </div>
 </section>
 {/* Contact Section */}
-<section className="bg-secondary text-white py-20 px-6 md:px-16 text-center">
+<section className="bg-cyan-600 text-white py-20 px-6 md:px-16 text-center">
   <h2 className="text-4xl font-bold mb-6">Get in Touch</h2>
   <p className="text-lg mb-8 max-w-2xl mx-auto">
     Visit our office or reach out to us for personalized property guidance.
