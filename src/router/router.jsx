@@ -32,6 +32,8 @@ import AgentRoute from "../Routes/AgentRoute";
 import FraudBlocked from "../pages/FraudBlocked/FraudBlocked";
 import ErrorElement from "../ErrorElement/ErrorElement";
 import AdvertiseProperty from "../pages/AdminDashBoard/AdvertiseProperty/AdvertiseProperty";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import OurLocation from "../pages/OurLocation/OurLocation";
 
 
 export const router = createBrowserRouter([
@@ -43,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         Component: Home,
+      },
+      {
+        path: "/about-us",
+        Component: AboutUs,
       },
       {
         path: "/login",
@@ -59,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: '/fraud-blocked',
         Component: FraudBlocked,
+      },
+      {
+        path: "location",
+        element: <PrivateRoute><OurLocation></OurLocation></PrivateRoute>
       }
     ],
   },
@@ -77,7 +87,7 @@ export const router = createBrowserRouter([
       {
         path: "details/:id",
         element: <PropertyDetails></PropertyDetails>,
-      },
+      }
     ],
   },
   {

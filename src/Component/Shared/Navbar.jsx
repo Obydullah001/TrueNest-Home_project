@@ -64,11 +64,21 @@ const Navbar = () => {
           All Properties
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "font-extrabold underline text-primary" : "font-medium"
+          }
+          to="/about-us"
+        >
+          About Us
+        </NavLink>
+      </li>
     </>
   );
 
   return (
-    <div className="navbar shadow-sm bg-base-100 dracula:bg-gray-900 my-4 sticky top-0 z-50 mx-auto">
+    <div className="navbar shadow-sm mx-auto bg-secondary dracula:bg-gray-900  sticky top-0 z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">
@@ -122,6 +132,7 @@ const Navbar = () => {
           
           <>
             {user && (
+             <>
               <li>
                 <NavLink
                   className={({ isActive }) =>
@@ -134,6 +145,20 @@ const Navbar = () => {
                   DashBoard
                 </NavLink>
               </li>
+               <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "font-extrabold underline text-primary"
+                      : "font-medium"
+                  }
+                  to="/location"
+                >
+                  Location
+                </NavLink>
+              </li>
+             </>
+
             )}
           </>
         </ul>
